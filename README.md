@@ -25,5 +25,6 @@
 ---
 
 ## 📁 File Structure
-- Main.cpp - read and process all inputs from mpu6050 and give output to motors
-- platformio.ini - Configure ESP32
+- Read.ino - Read MPU6050 with/ without processing
+- Transmit.ino - Send data to other ESP32
+- ServoControl.ino - Contol Servos and stepper with the data
