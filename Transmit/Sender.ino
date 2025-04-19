@@ -21,6 +21,9 @@ float offsetAngle = 0;
 
 unsigned long lastTime = 0;
 
+const int stepsPerRevolution = 200;
+const float degreeToStep = stepsPerRevolution / 360.0;
+
 void setup() {
   Serial.begin(115200);
   Wire.begin();
@@ -84,9 +87,10 @@ void loop() {
 
   if (totalAngle > maxAngle) totalAngle = maxAngle;
   if (totalAngle < -maxAngle) totalAngle = -maxAngle;
-  //long targetSteps = totalAngle * degreeToStep;
+  long targetSteps = totalAngle * degreeToStep;
+
   // Prepare data and send
-  dataToSend.angle = tiltAngle;
+  dataToSend.angle = targetSteps;
   esp_now_send(slaveAddress, (uint8_t*)&dataToSend, sizeof(dataToSend));
 
   // Debug
